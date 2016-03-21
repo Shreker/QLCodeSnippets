@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCAnimationForTabBarChange</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    CATransition *transition = [CATransition animation];
+    [transition setDuration:1];
+    [transition setType:@"cube"];
+    [self.tabBarController.view.layer addAnimation:transition forKey:nil];
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B2883E24-FA5D-4718-88B4-B2EF7FAFAFF9</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>UITabBar切换添加动画</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCAnimationForTabBarChange</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

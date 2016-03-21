@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCLocation</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>[self.geocoder reverseGeocodeLocation:location completionHandler:^(NSArray *placemarks, NSError *error)
+         {
+             if (error == nil &amp;&amp; [placemarks count] &gt; 0) {
+                 CLPlacemark *placeInfo = [placemarks objectAtIndex:0];
+                 NSString *title = [placeInfo.addressDictionary objectForKey:@"Name"];
+                 NSString *subTitle = [placeInfo.addressDictionary objectForKey:@"FormattedAddressLines"][0];
+                 CLLocationCoordinate2D coordinate = CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude);
+                 if(![self isCoordinateEmpty:coordinate]) {
+                     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:subTitle delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+                     [alert show];
+                     int delayInSeconds = 1;
+                     dispatch_time_t when = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+                     dispatch_after(when, dispatch_get_main_queue(), ^{
+                         [alert dismissWithClickedButtonIndex:0 animated:YES];
+                     });
+                 }
+                 NSLog(@"位置在：%@", subTitle);
+             } else {
+                 [self openGPSTips];
+             }
+         }];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>7603EBC8-6EA2-4991-9A08-EB22EF1D74D2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCLocation_ReverseGeocode</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

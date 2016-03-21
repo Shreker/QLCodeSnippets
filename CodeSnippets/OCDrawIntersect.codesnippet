@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCDrawIntersect</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetRGBFillColor(context, 0.0, 0.0, 0.0, 0.7);
+    CGContextSetRGBStrokeColor(context, 0.6, 0.6, 0.6, 1.0);
+    
+    CGFloat lengths[2] = {0.0, 3.0 * 2};
+    CGContextSetLineCap(context, kCGLineCapRound);
+    CGContextSetLineWidth(context, 3.0);
+    CGContextSetLineDash(context, 0.0f, lengths, 2);
+    
+    CGFloat width = self.bounds.size.width;
+    CGFloat height = self.bounds.size.height;
+    CGPoint origin = _rectToCut.origin;
+    CGSize size = _rectToCut.size;
+    CGRect clips[] = {
+        CGRectMake(0, 0, width, origin.y),
+        CGRectMake(0, origin.y, origin.x, size.height),
+        CGRectMake(0, origin.y + size.height, width, height-(origin.y+size.height)),
+        CGRectMake(origin.x + size.width, origin.y, width-(origin.x + size.width), size.height),
+    };
+    CGContextClipToRects(context, clips, sizeof(clips) / sizeof(clips[0]));
+    CGContextFillRect(context, self.bounds);
+    CGContextStrokeRect(context, _rectToCut);
+    UIGraphicsEndImageContext();
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>9819BD48-87F0-4A84-B786-F597AB85087D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>view穿洞</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCDrawIntersect</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

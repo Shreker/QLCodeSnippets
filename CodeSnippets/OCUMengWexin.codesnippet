@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ocUMengWexin</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>NSString *strShare = [NSString stringWithFormat:@"http://www.hscloudtech.com/training/Course/MobileVideoCourses/ShareVideoCourse?id=%@&amp;r=%@&amp;from=singlemessage&amp;isappinstalled=1", coursesDetail.ID, [coursesDetail.VideoDetails firstObject][@"Resource"]];
+    [UMSocialData defaultData].extConfig.wechatSessionData.url = strShare;
+    [UMSocialData defaultData].extConfig.wechatSessionData.title = coursesDetail.VideoCoursesName;
+    UIImage *image = [UIImage imageNamed:@"hs_loginIcon"];
+    [UMSocialSnsService presentSnsIconSheetView:self
+                                         appKey:UmengAppkey
+                                      shareText:coursesDetail.Synopsis
+                                     shareImage:image
+                                shareToSnsNames:@[UMShareToWechatSession,UMShareToWechatTimeline]
+                                       delegate:self];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>42F2E4B3-B328-4A16-AA45-FAD109491704</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>UMengWexin</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCUMengWexin</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCImageGetFrameFromGif</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>SDImageCache *cache = [SDImageCache sharedImageCache];
+NSURL *urlImage =[NSURL URLWithString:[NSString stringWithFormat:@"%@%@",kBaseImageUrl,strImageName]];
+[cache queryDiskCacheForKey:urlImage.description done:^(UIImage *image, SDImageCacheType cacheType) {
+    if (image) {
+        _imageView.image = image;
+    } else {
+        SDWebImageDownloader *downloader = [SDWebImageDownloader sharedDownloader];
+        [downloader downloadImageWithURL:urlImage options:SDWebImageRetryFailed | SDWebImageProgressiveDownload | SDWebImageLowPriority progress:nil completed:^(UIImage *image, NSData *data, NSError *error, BOOL finished) {
+            if (finished) {
+                BOOL isGif = [data sd_isGIF];
+                if (isGif) {
+                    CGImageSourceRef gifSource = CGImageSourceCreateWithData((__bridge_retained CFDataRef)data, NULL);
+                    CGImageRef imageRef = CGImageSourceCreateImageAtIndex(gifSource, 0, NULL);
+                    _imageView.image = [UIImage imageWithCGImage:imageRef];
+                } else {
+                    _imageView.image = image;
+                }
+                [[SDImageCache sharedImageCache] storeImage:_imageView.image forKey:[urlImage description]];
+            }
+        }];
+    }
+}];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>958F425C-BBDA-484F-8879-83FD28A7E29D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Get a Gif frame to show in the imageView</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCImageGetFrameFromGif</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

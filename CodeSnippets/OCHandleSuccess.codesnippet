@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ocHandleSuccess</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if ([responseObject isKindOfClass:[NSDictionary class]]) {
+    NSDictionary *dicRes = responseObject;
+    if ([dicRes[@"code"] boolValue]) {
+        NSArray *arrDatas = dicRes[@"datas"];
+        NSMutableArray *arrMTemp = [NSMutableArray arrayWithCapacity:arrDatas.count];
+        for (NSDictionary *dicData in arrDatas) {
+            
+            [arrMTemp addObject:&lt;#(nonnull id)#&gt;];
+        }
+        
+        [QLHUDTool dissmis];
+        if (success) {
+            success();
+        }
+    } else {
+        [QLHUDTool showErrorWithStatus:dicRes[@"msg"]];
+        if (failure) {
+            failure();
+        }
+    }
+} else {
+    [QLHUDTool showErrorWithStatus:@"请求失败,请稍后再试"];
+    if (failure) {
+        failure();
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F32CD1CC-5A9D-4156-98B1-EBE21F2ADA04</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>网络请求成功后的处理</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCHandleSuccess</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

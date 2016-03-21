@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCHandleUserModelInUserTool</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>QLSingletonImplementation(UserTool)
+
+- (id)init {
+    if(self = [super init]) {
+        _userModel = [NSKeyedUnarchiver unarchiveObjectWithFile:HNUserModelPath];
+    }
+    return self;
+}
+
+- (void)saveUserModel:(QLUserModel *)userModel {
+    _userModel = userModel;
+    [NSKeyedArchiver archiveRootObject:_userModel toFile:HNUserModelPath];
+}
+- (void)clearCurrentUserModel {
+    NSString *userDataPath = HNUserModelPath;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    BOOL isUserDataExist = [fileManager fileExistsAtPath:userDataPath];
+    if (isUserDataExist) {
+        NSError *error;
+        [fileManager removeItemAtPath:userDataPath error:&amp;error];
+        if (error) {
+            QLLog(@"%s-userData Delete Failed:%@", __FUNCTION__, error);
+        } else {
+            _userModel = nil;
+        }
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A3F5FACF-9515-4EFA-A27D-AC73639EFD0D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>UserModel在UserTool中的处理的实现</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCHandleUserModelInUserTool_Implementation</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

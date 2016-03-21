@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCBPNotification</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark - Load default Setting
+- (void)loadDefaultNotificationSettingWithApplication:(UIApplication *)application Options:(NSDictionary *)launchOptions {
+    // iOS8 下需要使用新的 API
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] &gt;= 8.0) {
+        UIUserNotificationType type = UIUserNotificationTypeBadge | UIUserNotificationTypeSound | UIUserNotificationTypeAlert;
+        UIUserNotificationSettings *settings = [UIUserNotificationSettings settingsForTypes:type categories:nil];
+        [[UIApplication sharedApplication] registerUserNotificationSettings:settings];
+    }else {
+        UIRemoteNotificationType myTypes = UIRemoteNotificationTypeBadge|UIRemoteNotificationTypeAlert|UIRemoteNotificationTypeSound;
+        [[UIApplication sharedApplication] registerForRemoteNotificationTypes:myTypes];
+    }
+    
+    // 启动时注册百度云推送服务
+#ifdef DEBUG
+    [BPush registerChannel:launchOptions apiKey:QLBPAPIKey pushMode:BPushModeDevelopment withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:YES];
+#else 
+    [BPush registerChannel:launchOptions apiKey:QLBPAPIKey pushMode:BPushModeProduction withFirstAction:nil withSecondAction:nil withCategory:nil isDebug:NO];
+#endif
+    // App是用户点击推送消息启动
+    NSDictionary *userInfo = [launchOptions objectForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+    if (userInfo) {
+        NSLog(@"从消息启动:%@",userInfo);
+        [BPush handleNotification:userInfo];
+    }
+#if TARGET_IPHONE_SIMULATOR
+    Byte dt[32] = {0xc6, 0x1e, 0x5a, 0x13, 0x2d, 0x04, 0x83, 0x82, 0x12, 0x4c, 0x26, 0xcd, 0x0c, 0x16, 0xf6, 0x7c, 0x74, 0x78, 0xb3, 0x5f, 0x6b, 0x37, 0x0a, 0x42, 0x4f, 0xe7, 0x97, 0xdc, 0x9f, 0x3a, 0x54, 0x10};
+    [self application:application didRegisterForRemoteNotificationsWithDeviceToken:[NSData dataWithBytes:dt length:32]];
+#endif
+    //角标清0
+    [[UIApplication sharedApplication] setApplicationIconBadgeNumber:0];
+}
+#pragma mark - 远程通知
+// 在 iOS8 系统中，还需要添加这个方法。通过新的 API 注册推送服务
+- (void)application:(UIApplication *)application didRegisterUserNotificationSettings:(UIUserNotificationSettings *)notificationSettings {
+    [application registerForRemoteNotifications];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
+    NSLog(@"test:%@",deviceToken);
+    [BPush registerDeviceToken:deviceToken];
+    [BPush bindChannelWithCompleteHandler:^(id result, NSError *error) {
+        // 可以在这里获取到获得channnelid,appid,userid等信息
+    }];
+}
+
+// 当 DeviceToken 获取失败时，系统会回调此方法
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error {
+    NSLog(@"DeviceToken 获取失败，原因：%@",error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo fetchCompletionHandler:(void (^)(UIBackgroundFetchResult))completionHandler {
+    // 在这里处理接收到的通知
+    // ...
+    completionHandler(UIBackgroundFetchResultNewData);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo {
+    // App 收到推送的通知
+    [BPush handleNotification:userInfo];
+}
+
+#pragma mark - 本地通知
+- (void)testLocalNotifi {
+    NSLog(@"测试本地通知啦！！！");
+    NSDate *fireDate = [[NSDate new] dateByAddingTimeInterval:5];
+    [BPush localNotification:fireDate alertBody:@"这是本地通知" badge:3 withFirstAction:@"打开" withSecondAction:@"关闭" userInfo:nil soundName:nil region:nil regionTriggersOnce:YES category:nil];
+}
+
+- (void)application:(UIApplication *)application didReceiveLocalNotification:(UILocalNotification *)notification {
+    NSLog(@"接收本地通知啦！！！");
+    [BPush showLocalNotificationAtFront:notification identifierKey:nil];
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>2277438D-FFD4-47C3-9725-B7A5EA843F7A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>百度推送</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCBPNotification</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

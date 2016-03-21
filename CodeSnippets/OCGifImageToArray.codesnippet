@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCGifImageToArray</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>+ (NSMutableArray *)praseGIFDataToImageArray:(NSData *)data;
+{
+    NSMutableArray *frames = [[NSMutableArray alloc] init];
+    CGImageSourceRef src = CGImageSourceCreateWithData((CFDataRef)data, NULL);
+    CGFloat animationTime = 0.f;
+    if (src) {
+        size_t l = CGImageSourceGetCount(src);
+        frames = [NSMutableArray arrayWithCapacity:l];
+        for (size_t i = 0; i &lt; l; i++) {
+            CGImageRef img = CGImageSourceCreateImageAtIndex(src, i, NULL);
+            NSDictionary *properties = (NSDictionary *)CGImageSourceCopyPropertiesAtIndex(src, i, NULL);
+            NSDictionary *frameProperties = [properties objectForKey:(NSString *)kCGImagePropertyGIFDictionary];
+            NSNumber *delayTime = [frameProperties objectForKey:(NSString *)kCGImagePropertyGIFUnclampedDelayTime];
+            animationTime += [delayTime floatValue];
+            if (img) {
+                [frames addObject:[UIImage imageWithCGImage:img]];
+                CGImageRelease(img);
+            }
+        }
+        CFRelease(src);
+    }
+    return frames;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>5EE1D50B-2377-46E9-8A77-9F4A4722690E</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>把gif图片转化成数组</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCGifImageToArray</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

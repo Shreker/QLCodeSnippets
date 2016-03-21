@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCSaveCookie</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeExpression</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/** Save Cookie */
+        NSDictionary *fields= [operation.response allHeaderFields];
+        NSArray *cookies=[NSHTTPCookie cookiesWithResponseHeaderFields:fields forURL:[NSURL URLWithString:strBaseUrl]];
+        if (cookies.count) {
+            NSDictionary* requestFields=[NSHTTPCookie requestHeaderFieldsWithCookies:cookies];
+            [[NSUserDefaults standardUserDefaults] setObject:[requestFields objectForKey:@"Cookie"] forKey:USER_Cookies];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4584B3F0-F3B9-48B8-9FCF-2CEEE702688F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>保存从服务器返回的Cookie</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCSaveCookie</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

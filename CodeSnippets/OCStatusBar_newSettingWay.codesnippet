@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCStatusBar_newSettingWay</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>if([UINavigationBar conformsToProtocol:@protocol(UIAppearanceContainer)]) {
+        [UINavigationBar appearance].tintColor = &lt;#[UIColor whiteColor]#&gt;;
+        [[UINavigationBar appearance] setTitleTextAttributes:&lt;#@{NSFontAttributeName : [UIFont boldSystemFontOfSize:18], NSForegroundColorAttributeName : [UIColor whiteColor]}#&gt;];
+        [[UINavigationBar appearance] setBarTintColor:&lt;#[UIColor colorWithRed:(51)/255.f green:(171)/255.f blue:(160)/255.f alpha:1.f]#&gt;];
+        [[UINavigationBar appearance] setTranslucent:&lt;#NO#&gt;];
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>22FD0D37-139F-47A9-8630-370154CA166C</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>A new way to set properties in status bar.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCStatusBar_newSettingWay</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

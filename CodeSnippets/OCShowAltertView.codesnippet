@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ocshowalterview</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeExpression</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>UIAlertView *alterView = [[UIAlertView alloc] initWithTitle:@"提示" message:@"&lt;#string#&gt;" delegate:nil cancelButtonTitle:&lt;#(NSString *)#&gt; otherButtonTitles:@"OK", nil];
+    [alterView show];  </string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F1A05671-DCB7-4F0A-93FE-B15E6071A0D2</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCShowAlterView</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

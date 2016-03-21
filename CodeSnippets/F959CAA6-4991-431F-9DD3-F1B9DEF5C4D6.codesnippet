@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCFileManager</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>NSFileManager *fileManager = [NSFileManager defaultManager];
+    NSString *documentDir = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) firstObject];
+    //创建一个目录
+    [fileManager createDirectoryAtPath:[NSString stringWithFormat:@"%@/myFolder", NSHomeDirectory()] attributes:nil];
+    
+    /*!
+     * 创建一个文件
+     */
+    
+    // File we want to create in the documents directory
+    // Result is: /Documents/file1.txt
+    NSString *filePath= [documentDir stringByAppendingPathComponent:@"file1.txt"];
+    //需要写入的字符串
+    NSString *str= @"iPhoneDeveloper Tips\nhttp://iPhoneDevelopTips,com";
+    //写入文件
+    NSError *error = nil;
+    [str writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:&amp;error];
+    //显示文件目录的内容
+    NSLog(@"Documentsdirectory: %@", [fileManager contentsOfDirectoryAtPath:documentDir error:&amp;error]);
+    
+    /*!
+     * 对一个文件重命名
+     */
+    //通过移动该文件对文件重命名
+    NSString *filePath2= [documentDir stringByAppendingPathComponent:@"file2.txt"];
+    //判断是否移动
+    if ([fileManager moveItemAtPath:filePath toPath:filePath2 error:&amp;error] != YES)
+        NSLog(@"Unable to move file: %@", [error localizedDescription]);
+    //显示文件目录的内容
+    NSLog(@"Documentsdirectory: %@",
+          [fileManager contentsOfDirectoryAtPath:documentDir error:&amp;error]);
+    //在移动了文件之后，输出结果应该如下图所示：
+    //删除一个文件
+    //为了使这个技巧完整，让我们再一起看下如何删除一个文件：
+    //在filePath2中判断是否删除这个文件
+    if ([fileManager removeItemAtPath:filePath2 error:&amp;error] != YES)
+        NSLog(@"Unable to delete file: %@", [error localizedDescription]);
+    //显示文件目录的内容
+    NSLog(@"Documentsdirectory: %@",
+          [fileManager contentsOfDirectoryAtPath:documentDir error:&amp;error]);
+    
+    
+    /*!
+     * 取某一个目录中的所有文件列表
+     */
+    NSArray *fileList = [[NSArray alloc] init];
+    fileList = [fileManager contentsOfDirectoryAtPath:documentDir error:&amp;error];
+    QLLog(@"Every Thing in the dir:%@",fileList);
+    
+    //以下这段代码则可以列出给定一个文件夹里的所有子文件夹名
+    NSMutableArray *dirArray = [[NSMutableArray alloc] init];
+    BOOL isDir = NO;
+    for (NSString *file in fileList) {
+        NSString *path = [documentDir stringByAppendingPathComponent:file];
+        [fileManager fileExistsAtPath:path isDirectory:(&amp;isDir)];
+        if (isDir) {
+            [dirArray addObject:file];
+        }
+        isDir = NO;
+    }
+    QLLog(@"All folders:%@",dirArray);</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>F959CAA6-4991-431F-9DD3-F1B9DEF5C4D6</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Some operation of the NSFileManager.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCFileManager</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

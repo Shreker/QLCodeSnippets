@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>initwithframe_standard</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (instancetype)initWithFrame:(CGRect)frame {
+    if (self == [super initWithFrame:frame]) {
+        [self loadDefaultSetting];
+    }
+    return self;
+}
+
+/** Load the default UI elements And prepare some datas needed. */
+- (void)loadDefaultSetting {
+    
+}
+
+/** Layout subviews */
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EB296817-6B9C-4A09-9F1B-0781C2F88A9D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>标准的View应该实现的方法模板</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>InitWithFrame_standard</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCCellWithTableView_Implementation</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/** 返回循环利用的cell */
++ (instancetype)cellWithTableView:(UITableView *)tableView {
+    static NSString *strId = @"&lt;#ClassName#&gt;";
+    &lt;#ClassName#&gt; *cell = [tableView dequeueReusableCellWithIdentifier:strId];
+    if (!cell) {
+        cell = [[[NSBundle mainBundle] loadNibNamed:@"&lt;#ClassName#&gt;" owner:nil options:nil] firstObject];
+        //cell = [[&lt;#ClassName#&gt; alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strId];
+    }
+    return cell;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>0090D7F3-7128-47B4-9322-6C542316F18D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>返回循环利用的cell的实现</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCCellWithTableView_Implementation</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

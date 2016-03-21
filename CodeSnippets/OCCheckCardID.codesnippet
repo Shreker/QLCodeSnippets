@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCCheckCardID</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>- (NSString *)checkUserInput {
+    if (![_txfCardId hasText]) {
+        return @"请填写身份证号码";
+    }else{
+        //判断身份证号是否正确
+        if (_txfCardId.text.length == 15 || _txfCardId.text.length == 18) {
+            NSString *emailRegex = @"^[0-9]*$";
+            NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+            bool sfzNo = [emailTest evaluateWithObject:[_txfCardId.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]]];
+            
+            if (_txfCardId.text.length == 15) {
+                if (!sfzNo) {
+                    return @"请输入正确的身份证号";
+                }
+            }
+            else if (_txfCardId.text.length == 18) {
+                bool sfz18NO = [self checkIdentityCardNo:_txfCardId.text];
+                if (!sfz18NO) {
+                    return @"请输入正确的身份证号";
+                }
+            }
+        }else{
+            return @"请输入正确的身份证号";
+        }
+    }
+    if (![_txfCardName hasText]) {
+        return @"请填写姓名";
+    }
+    return nil;
+}
+#pragma mark - 身份证识别
+-(BOOL)checkIdentityCardNo:(NSString*)cardNo
+{
+    if (cardNo.length != 18) {
+        return  NO;
+    }
+    NSArray* codeArray = [NSArray arrayWithObjects:@"7",@"9",@"10",@"5",@"8",@"4",@"2",@"1",@"6",@"3",@"7",@"9",@"10",@"5",@"8",@"4",@"2", nil];
+    NSDictionary* checkCodeDic = [NSDictionary dictionaryWithObjects:[NSArray arrayWithObjects:@"1",@"0",@"X",@"9",@"8",@"7",@"6",@"5",@"4",@"3",@"2", nil]  forKeys:[NSArray arrayWithObjects:@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10", nil]];
+    
+    NSScanner* scan = [NSScanner scannerWithString:[cardNo substringToIndex:17]];
+    
+    int val;
+    BOOL isNum = [scan scanInt:&amp;val] &amp;&amp; [scan isAtEnd];
+    if (!isNum) {
+        return NO;
+    }
+    int sumValue = 0;
+    
+    for (int i =0; i&lt;17; i++) {
+        sumValue+=[[cardNo substringWithRange:NSMakeRange(i , 1) ] intValue]* [[codeArray objectAtIndex:i] intValue];
+    }
+    
+    NSString* strlast = [checkCodeDic objectForKey:[NSString stringWithFormat:@"%d",sumValue%11]];
+    
+    if ([strlast isEqualToString: [[cardNo substringWithRange:NSMakeRange(17, 1)]uppercaseString]]) {
+        return YES;
+    }
+    return  NO;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>CEEABA39-2477-4014-8713-0304A73DD982</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>检验身份证</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCCheckCardID</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

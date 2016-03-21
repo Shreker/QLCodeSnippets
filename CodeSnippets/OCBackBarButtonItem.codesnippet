@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCBackBarButtonItem</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>UIBarButtonItem *backButtonItem = [[UIBarButtonItem alloc] initWithTitle:[NSString stringWithFormat:@"&lt;#返回#&gt;"]
+                                                                       style:UIBarButtonItemStylePlain
+                                                                      target:nil action:nil];
+    self.navigationItem.backBarButtonItem = backButtonItem;</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>484B2EB1-9A7A-41E0-A197-B016C0591C46</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>返回按钮</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCBackBarButtonItem</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCDefaultControllerImplementation</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>#pragma mark - ♻️ LifeCycle Methods
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self loadDefaultSetting];
+}
+
+/** Load the default UI elements And prepare some datas needed. */
+- (void)loadDefaultSetting {
+    
+}
+
+- (void)dealloc {
+    // RELEASE OBJECTS TO FREE THE MEMORIES HERE!
+    __unsafe_unretained typeof(self) selfUnsafe = self;
+    QLLog(@"🌜A instance of type %@ was DESTROYED!🌛", NSStringFromClass([selfUnsafe class]));
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8C6F0D7F-DC0B-4FCC-813E-B50655A1997D</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>The default implementation in OC for controller.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCDefaultControllerImplementation</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

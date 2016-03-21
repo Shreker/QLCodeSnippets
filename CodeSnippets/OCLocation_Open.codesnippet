@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCLocation</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/* 检测应用是否开启定位服务 */
+- (void)locationManager: (CLLocationManager *)manager didFailWithError: (NSError *)error {
+    [manager stopUpdatingLocation];
+    switch([error code]) {
+        case kCLErrorDenied:
+            [self openGPSTips];
+            break;
+        case kCLErrorLocationUnknown:
+            break;
+        default:
+            break;
+    }
+}
+-(void)openGPSTips{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"当前定位服务不可用" message:@"请尝试到“设置-&gt;隐私-&gt;定位服务”中开启定位\n或等待GPS定位成功" delegate:self cancelButtonTitle:nil otherButtonTitles:nil];
+    [alert show];
+    int delayInSeconds = 2;
+    dispatch_time_t when = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+    dispatch_after(when, dispatch_get_main_queue(), ^{
+        [alert dismissWithClickedButtonIndex:0 animated:YES];
+    });
+}
+/*
+ &lt;key&gt;NSLocationAlwaysUsageDescription&lt;/key&gt;
+ &lt;string&gt;微博@iOS程序犭袁 请求后台定位权限&lt;/string&gt;
+ &lt;key&gt;NSLocationWhenInUseUsageDescription&lt;/key&gt;
+ &lt;string&gt;微博@iOS程序犭袁 请求前台定位权限&lt;/string&gt;
+ */</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>A35F904E-5AC3-4600-AB2C-E4A8C649DFB5</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCLocation_Open</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCSpolitliagtSearch</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/*
+ *
+ 复杂一点的设置方式 (详情请见： http://is.gd/B8q6eG )
+ *
+ */
+- (void)spotLightIndexing {
+    
+    NSString *path = [[NSBundle mainBundle] pathForResource:
+                      @"data" ofType:@"plist"];
+    NSArray *plistArray = [[NSArray alloc] initWithContentsOfFile:path];
+    
+    [plistArray enumerateObjectsUsingBlock:^(NSDictionary * _Nonnull dict, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+        CSSearchableItemAttributeSet *attributeSet = [[CSSearchableItemAttributeSet alloc] initWithItemContentType:(NSString *)kUTTypeImage];
+        
+        // Set properties that describe attributes of the item such as title, description, and image.
+        NSString *title = [dict objectForKey:@"title"];
+        attributeSet.title = title;
+        attributeSet.contentDescription = [NSString stringWithFormat:@"%@的描述，跟微博@iOS程序犭袁 是好朋友",title];
+        attributeSet.keywords = @[ title ];
+        
+        // Create an attribute set for an item
+        
+        UIImage *image = [UIImage imageNamed:[dict objectForKey:@"image_name"]];
+        NSData *imageData = [NSData dataWithData:UIImagePNGRepresentation(image)];
+        attributeSet.thumbnailData = imageData;
+        
+        // Create a searchable item, specifying its ID, associated domain, and the attribute set you created earlier.
+        
+        CSSearchableItem *item;
+        NSString *identifier = [NSString stringWithFormat:@"%@",attributeSet.title];
+        
+        item = [[CSSearchableItem alloc] initWithUniqueIdentifier:identifier domainIdentifier:@"com.example.apple_sample.theapp.search" attributeSet:attributeSet];
+        
+        // Index the item.
+        
+        [[CSSearchableIndex defaultSearchableIndex] indexSearchableItems:@[item] completionHandler: ^(NSError * __nullable error) {
+            NSLog(@"Search item indexed");
+            
+        }];
+        
+    }];
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4295DE82-7CF7-405A-B323-C3E9F4CDAA11</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>A method using spolit.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCSpolitliagtSearch</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

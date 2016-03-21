@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ocVersionControl</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/** 判断用户是否第一次使用此软件以决定是否显示新特性界面 */
+    NSString *strVersionKey = (NSString *)kCFBundleVersionKey;
+    NSString *strVersionPrevious = [[NSUserDefaults standardUserDefaults] stringForKey:strVersionKey]; // 以前的版本号
+    NSString *strVersionCurrent = [NSBundle mainBundle].infoDictionary[strVersionKey];// 当前的版本号
+    if ([strVersionCurrent isEqualToString:strVersionPrevious]) { // 已经启动过程序，直接进入主界面
+        BOOL loginStatus = [[NSUserDefaults standardUserDefaults] boolForKey:kLoginStatus];
+        if (loginStatus) { // 如果登陆,直接跳到主页面
+            
+        } else { // 没有登陆,跳到登陆页
+            
+        }
+    } else { // 第一次运行这个软件：显示新特性
+        [[NSUserDefaults standardUserDefaults] setObject:strVersionCurrent forKey:strVersionKey];
+        [[NSUserDefaults standardUserDefaults] synchronize]; // 强制现在写入版本号
+        QLGuideViewController *vcNewFeature = [[QLGuideViewController alloc] init];
+        self.window.rootViewController = [[QLNavigationController alloc] initWithRootViewController:vcNewFeature];
+    }</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>33058075-CB71-43F2-97CE-F861B5585484</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>ocVersionControl</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCVersionControl</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

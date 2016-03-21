@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCDataFromAssetsURL</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>ALAssetsLibrary   *lib = [[ALAssetsLibrary alloc] init];
+            [lib assetForURL:info[UIImagePickerControllerReferenceURL] resultBlock:^(ALAsset *asset){
+                //在这里使用asset来获取图片
+                ALAssetRepresentation *rep = [asset defaultRepresentation];
+                Byte *buffer = (Byte*)malloc(rep.size);
+                NSUInteger buffered = [rep getBytes:buffer fromOffset:0.0 length:rep.size error:nil];
+                NSData *gifData = [NSData dataWithBytesNoCopy:buffer length:buffered freeWhenDone:YES];
+                [_viewAddPic setGifData:gifData size:image.size];
+            } failureBlock:^(NSError *error) {
+                [MBProgressHUD showHUDWithTextString:@"Gif图片获取失败" customImg:nil inView:kKeyWindow Delay:2.0 ProgressHUDMode:MBProgressHUDModeText];
+            }];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>515360CE-09FF-4179-8A98-77DA963DC3F9</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>Get Data from the assetsURL.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCDataFromAssetsURL</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

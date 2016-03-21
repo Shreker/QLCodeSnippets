@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>ocrequest</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>CodeBlock</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>NSString *strBaseUrl = [NSString stringWithFormat:@"%@%@", QLBaseUrlString, @""];
+NSDictionary *dicParams = @{@"&lt;##&gt;": &lt;#obj#&gt;,
+                            @"&lt;##&gt;": &lt;#obj#&gt;};
+[QLHttpTool postWithBaseUrl:strBaseUrl Parameters:dicParams WhenSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+    if ([responseObject isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dicRes = responseObject;
+        if ([dicRes[@"code"] boolValue]) {
+            [QLHUDTool dissmis];
+            
+        } else {
+            [QLHUDTool showErrorWithStatus:dicRes[@"msg"]];
+        }
+    } else {
+        [QLHUDTool showErrorWithStatus:@"请求失败,请稍后再试"];
+    }
+} WhenFailure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    [QLHUDTool showErrorWithStatus:@"请求失败,请稍后再试"];
+}];</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>B086C20D-C466-499D-94AA-19218AB6C040</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>网络请求模型</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCRequest</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

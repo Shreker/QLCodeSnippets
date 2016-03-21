@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCInitWithDictionary_class</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>+ (instancetype)&lt;#name#&gt;ModelWithDictionary:(NSDictionary *)dicData {
+    if (dicData == nil || [dicData isKindOfClass:[NSNull class]]) return nil;
+    &lt;#TypeName#&gt; *&lt;#name#&gt; = [self new];
+    &lt;#name#&gt;.str&lt;#property#&gt; = [NSString getValidStringWithObject:dicData[@"&lt;#name#&gt;"]];
+    
+    return &lt;#name#&gt;;
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>8155B38A-FC67-4223-AE3F-269137733EC0</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>类方法数据模型初始化实现</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCInitWithDictionary_class</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

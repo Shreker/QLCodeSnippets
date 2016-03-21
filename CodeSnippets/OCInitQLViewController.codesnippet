@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>OCInitQLViewController</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>ClassImplementation</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>{
+    NSArray *_arrTitles;
+    NSDictionary *_dicControllerNames;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    [self loadDefaultSetting];
+}
+
+#pragma mark - Load default UI and Data
+- (void)loadDefaultSetting {
+    _arrTitles = @[&lt;#object#&gt;, &lt;#object#&gt;];
+    _dicControllerNames = @{@"&lt;#string#&gt;": &lt;#object#&gt;,
+                            @"&lt;#string#&gt;": &lt;#object#&gt;};
+}
+
+#pragma mark - UITableViewDataSource, UITableViewDelegate
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return _arrTitles.count;
+}
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *strId = @"cellStyle1";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:strId];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:strId];
+    }
+    cell.textLabel.text = _arrTitles[indexPath.row];
+    
+    return cell;
+}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    NSString *strTitle = _arrTitles[indexPath.row];
+    Class cls = NSClassFromString(_dicControllerNames[strTitle]);
+    
+    UIViewController *viewController = [cls new];
+    viewController.title = strTitle;
+    [self.navigationController pushViewController:viewController animated:YES];
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>FDFBBB79-C9D2-482D-9C7B-61AA21BE30ED</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>初始化表格展现的TableView</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>OCInitQLViewController</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

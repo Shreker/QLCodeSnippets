@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>SWLog_Class</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>class QLLog {
+    func QLLog(message: String, function: String = __FUNCTION__) {
+        #if DEBUG
+            print("\(function): \(message)")
+        #else
+            print("")
+        #endif
+    }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>C0AEBD3F-764A-4EEF-BFCC-96F569FE3C5F</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>A log implementation in Swift.</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>SWLog_Class</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

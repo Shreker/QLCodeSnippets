@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>debugPrint</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>All</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>/** QLDEBUG Print | M:method, L:line, C:content*/
+#ifndef QLLog
+#ifdef DEBUG
+#define QLLog(FORMAT, ...) fprintf(stderr,"M:%s|L:%d|C-&gt;%s\n", __FUNCTION__, __LINE__, [[NSString stringWithFormat:FORMAT, ##__VA_ARGS__] UTF8String])
+#else
+#define QLLog(FORMAT, ...)
+#endif
+#endif</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EFF80FEC-0254-477C-9169-73F903676D1A</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Objective-C</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>调试打印</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>DebugPrint</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
